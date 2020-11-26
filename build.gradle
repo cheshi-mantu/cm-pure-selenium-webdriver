@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+    id 'java-library'
+    id 'application'
+
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+ext {
+    junitVersion = '5.6.0'
+}
+
+
+dependencies {
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+    testImplementation("org.seleniumhq.selenium:selenium-java:3.141.59")
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8'
+}
+
+task pure_selenium(type: Test) {
+    useJUnitPlatform(){
+        includeTags "pure_selenium"
+
+    }
+}
+
